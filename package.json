@@ -1,0 +1,21 @@
+{
+  "name": "@moon-cn/moon-util",
+  "version": "1.0.0-beta.1",
+  "description": "javascript util",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/moon_cn/web-lang.git"
+  },
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "prepare": "npm config set registry https://registry.npmjs.org/",
+    "publish:beta": "npm publish --tag beta --access=public"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "axios": "^1.6.8",
+    "qs": "^6.12.1"
+  }
+}
