@@ -177,6 +177,17 @@ moon.zeroPad = function (input, length) {
         this.splice(index, 0, item);
     }
 
+    /**
+     * 将一个数组追加到尾
+     * @param index
+     * @param item
+     */
+    Array.prototype.addAll = function ( items) {
+        for(let i = 0; i < items.length; i++){
+            this.push(items[i])
+        }
+    }
+
     Array.prototype.removeAt = function (index) {
         this.splice(index, 1)
     }
