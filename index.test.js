@@ -1,4 +1,4 @@
-import moon from "./index.js";
+import moon from "./src/index.js";
 
 
 console.debug('当前时间', moon.now())

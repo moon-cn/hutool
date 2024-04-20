@@ -6,16 +6,19 @@
     "type": "git",
     "url": "https://github.com/moon-cn/js-util.git"
   },
-  "main": "index.js",
-  "type": "module",
+  "main": "src/index.js",
   "scripts": {
     "prepare": "npm config set registry https://registry.npmjs.org/",
+    "build": "webpack",
     "publish:beta": "npm publish --tag beta --access=public"
   },
   "author": "",
   "license": "ISC",
   "peerDependencies": {
-    "axios": "^1.6.8",
-    "qs": "^6.12.1"
+    "axios": "^1.6.8"
+  },
+  "devDependencies": {
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
   }
 }
