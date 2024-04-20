@@ -9,13 +9,6 @@ var version = "1.0.0"
 console.log('hutool v' + version)
 
 
+export * from "./common"
+export * from "./date"
 
-import * as common from './common'
-import * as date from './date'
-
-
-
-export const hutool = {
-    ...common,
-    ...date
-}

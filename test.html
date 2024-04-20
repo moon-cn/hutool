@@ -9,6 +9,9 @@
 
     <script >
         console.log('当前时间', hutool.now())
+        console.log('加密', hutool.encryptString('中国 hello 123'))
+        console.log('解密', hutool.decryptString( hutool.encryptString('中国 hello 123')))
+
     </script>
 
 </body>
