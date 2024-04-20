@@ -23,9 +23,6 @@ export function zeroPad(input, length) {
     }
     return str;
 }
-
-const moon = {}
-
 // 日期工具
 
 export function year(date) {

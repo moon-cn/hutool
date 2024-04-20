@@ -11,7 +11,8 @@ module.exports = {
         library: {
             name:  "moon",
             type: "umd"
-        }
+        },
+        clean: true
     },
     externals: {
 
