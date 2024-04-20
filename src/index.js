@@ -8,7 +8,7 @@ var version = "1.0.0"
 
 console.log('hutool v' + version)
 
-
-export * from "./common"
-export * from "./date"
+import * as hutool from "./index.inc"
+export * from "./index.inc"
+export default hutool
 
