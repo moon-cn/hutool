@@ -1,12 +1,13 @@
 {
-  "name": "@moon-cn/js-util",
-  "version": "1.0.0-beta.1",
+  "name": "@moon-cn/util",
+  "version": "1.0.0-beta.2",
   "description": "javascript util",
   "repository": {
     "type": "git",
     "url": "https://github.com/moon-cn/js-util.git"
   },
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "files": ["dist"],
   "scripts": {
     "prepare": "npm config set registry https://registry.npmjs.org/",
     "build": "webpack",
