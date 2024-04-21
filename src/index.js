@@ -282,6 +282,7 @@ export function params(url) {
 
     url = url.substringAfter('?')
 
+    // TODO , 手动实现
     let params = qs.parse(url);
 
     return params || {};
@@ -486,7 +487,7 @@ export function friendlyTime(pastDate) {
  * @param time 数字 （Date.getTime）
  * @returns {string|null}
  */
-export function friendlyTotalTime(time) {
+function friendlyTotalTime(time) {
     if (time == null || time === '-') {
         return null
     }
@@ -505,4 +506,8 @@ export function friendlyTotalTime(time) {
     seconds = Math.floor(seconds)
 
     return min + '分' + seconds + '秒'
+}
+
+export default {
+    friendlyTotalTime
 }
