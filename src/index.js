@@ -481,3 +481,28 @@ export function friendlyTime(pastDate) {
     return `${elapsedSeconds} 秒${suffix}`;
 }
 
+/**
+ * 总共耗时, 如 3分5秒
+ * @param time 数字 （Date.getTime）
+ * @returns {string|null}
+ */
+export function friendlyTotalTime(time) {
+    if (time == null || time === '-') {
+        return null
+    }
+    let seconds = time / 1000;
+
+    seconds = Math.floor(seconds)
+
+    if (seconds < 60) {
+        return seconds + '秒';
+    }
+
+    let min = seconds / 60;
+    seconds = seconds % 60;
+
+    min = Math.floor(min);
+    seconds = Math.floor(seconds)
+
+    return min + '分' + seconds + '秒'
+}
