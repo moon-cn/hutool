@@ -4,3 +4,6 @@
 /JSTool.iml
 /index.test.js
 /src
+webpack.config.js
+test.html
+tsconfig.json

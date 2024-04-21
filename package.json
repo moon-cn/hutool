@@ -1,17 +1,16 @@
 {
   "name": "@moon-cn/hutool",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.5",
   "description": "javascript util",
   "repository": {
     "type": "git",
     "url": "https://github.com/moon-cn/js-util.git"
   },
   "main": "dist/index.js",
-  "files": ["dist"],
   "scripts": {
     "prepare": "npm config set registry https://registry.npmjs.org/",
     "build": "webpack",
-    "publish:beta": "npm publish --tag beta --access=public"
+    "publish:beta": "webpack && npx tsc &&  npm publish --tag beta --access=public"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +18,7 @@
     "axios": "^1.6.8"
   },
   "devDependencies": {
+    "typescript": "^5.4.5",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4"
   }
