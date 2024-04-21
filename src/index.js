@@ -434,8 +434,13 @@ export function thisMonth() {
 
 /**
  * 显示友好时间， 如 2小时前， 1周前
+ * @param pastDate 日期, 支持Date， String， Number
  */
 export function friendlyTime(pastDate) {
+    if (!(pastDate instanceof Date)) {
+        pastDate = new Date(pastDate)
+    }
+
     const currentDate = new Date();
     let elapsedMilliseconds = currentDate - pastDate;
     const suffix = elapsedMilliseconds > 0 ? "前" : "后";
