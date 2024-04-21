@@ -437,6 +437,9 @@ export function thisMonth() {
  * @param pastDate 日期, 支持Date， String， Number
  */
 export function friendlyTime(pastDate) {
+    if(pastDate == null){
+        return
+    }
     if (!(pastDate instanceof Date)) {
         pastDate = new Date(pastDate)
     }
