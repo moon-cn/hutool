@@ -395,7 +395,7 @@ http.get = function (url, params) {
     return axiosInstance.get(url, {params})
 }
 
-http.post = function (url, data, params) {
+http.post = function (url, data, params =null) {
     return axiosInstance.post(url, data, {
         params
     })
