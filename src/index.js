@@ -1,5 +1,7 @@
 // 数组扩展
 
+
+
 Array.prototype.contains = function (item) {
     return this.indexOf(item) !== -1;
 }
@@ -328,10 +330,14 @@ export function replaceParam(url, key, value) {
 // 浏览器相关 - 存储, 简单加密，至少不让人一下子就看出来
 
 const STORAGE_KEY = "MOON_STORAGE"
-export const storage = {}
+const storage = {}
 
 storage.data = function () {
-    return JSON.parse(decryptString(localStorage.getItem(STORAGE_KEY) || ""))
+    let hexString = localStorage.getItem(STORAGE_KEY) || "";
+    if(!hexString){
+        return  {}
+    }
+    return JSON.parse(decryptString(hexString))
 }
 storage.get = function (key) {
     return this.data()[key]
@@ -508,6 +514,6 @@ function friendlyTotalTime(time) {
     return min + '分' + seconds + '秒'
 }
 
-export default {
-    friendlyTotalTime
+export const hutool = {
+    storage
 }
