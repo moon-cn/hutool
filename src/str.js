@@ -92,7 +92,7 @@ function decryptString(hexString) {
     return decrypted;
 }
 
-export const str = {
+export const STR = {
     contains,
     count,
     capitalize,

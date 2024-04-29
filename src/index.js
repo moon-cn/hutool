@@ -2,11 +2,10 @@
 
 
 import {storage} from "./storage";
-import {date} from "./date";
+import {DATE} from "./date";
 import {http} from "./http";
-import {arr} from "./arr";
-import {str} from "./str";
-
+import {ARR} from "./arr";
+import {STR} from "./str";
 
 
 // 字符串扩展
@@ -105,7 +104,6 @@ export class FixedQueue {
 // 网络请求
 
 
-
 //  事件总线
 
 
@@ -170,11 +168,10 @@ export function replaceParam(url, key, value) {
 // 浏览器相关 - 存储, 简单加密，至少不让人一下子就看出来
 
 
-
 export const hutool = {
     storage,
     http,
-    date,
-    arr,
-    str
+    date: DATE,
+    arr: ARR,
+    str: STR
 }

@@ -1,4 +1,4 @@
-import {zeroPad} from "./index";
+import {STR} from "./str";
 
 
 function year(date) {
@@ -12,7 +12,7 @@ function year(date) {
  */
 function month(date) {
     const n = date.getMonth() + 1; // （注意月份从0开始，所以要加1）
-    return zeroPad(n, 2)
+    return STR.zeroPad(n, 2)
 }
 
 /**
@@ -20,7 +20,7 @@ function month(date) {
  * @param date
  */
 function date(date) {
-    return zeroPad(date.getDate(), 2)
+    return STR.zeroPad(date.getDate(), 2)
 }
 
 /**
@@ -29,15 +29,15 @@ function date(date) {
  * @returns {string}
  */
 function hour(date) {
-    return zeroPad(date.getHours(), 2);
+    return STR.zeroPad(date.getHours(), 2);
 }
 
 function minute(date) {
-    return zeroPad(date.getMinutes(), 2);
+    return STR.zeroPad(date.getMinutes(), 2);
 }
 
 function second(date) {
-    return zeroPad(date.getSeconds(), 2);
+    return STR.zeroPad(date.getSeconds(), 2);
 }
 
 function formatDate(d) {
@@ -160,7 +160,7 @@ function friendlyTotalTime(time) {
     return min + '分' + seconds + '秒'
 }
 
-export const date = {
+export const DATE = {
     year,
     month,
     date,

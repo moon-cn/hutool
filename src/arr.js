@@ -57,6 +57,6 @@ function sub(arr, fromIndex, toIndex) {
     return arr.slice(fromIndex, toIndex);
 }
 
-export const arr = {
+export const ARR = {
     contains,containsAny,add,addAt,addAll,remove,removeAt, clear, sub
 }
