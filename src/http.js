@@ -2,14 +2,14 @@ import {storage} from "./storage";
 import axios from "axios";
 
 
-
-
 const axiosInstance = axios.create({
     withCredentials: true, // 带cookie
     baseURL: '/',
 })
 
 const AUTH_STORE_KEYS = ['jwt', 'appToken', 'token', 'Authorization'];
+
+let ERR_CODE_BIZ = 520;
 
 function getToken() {
     for (let key of AUTH_STORE_KEYS) {
@@ -48,13 +48,13 @@ axiosInstance.interceptors.response.use(res => {
  * @param error 原始错误信息
  */
 
-let  globalErrorMessageHandler =(msg, error)=> {
+let globalErrorMessageHandler = (msg, error) => {
     console.log('请求异常', msg, error)
     console.log('您可以使用 http.globalErrorMessageHandler 设置提示方式')
     alert(msg)
 }
 
-function setGlobalErrorMessageHandler(fn){
+function setGlobalErrorMessageHandler(fn) {
     globalErrorMessageHandler = fn;
 }
 
@@ -102,23 +102,19 @@ function addErrorInterceptor() {
     }
 
     axiosInstance.interceptors.response.use(response => {
-        let {success, message} = response; // 这里默认服务器返回的包含 success 和message 字段， 通常框架都有
+        let {success, message, code} = response; // 这里默认服务器返回的包含 success 和message 字段， 通常框架都有
 
-        // 如果框架没有返回 success ，则不处理错误信息，因为无法判断是否成功
-        if (success === undefined) {
+        // 1. 如果框架没有返回 success ，则不处理错误信息，因为无法判断是否成功
+        // 2. 数据正常，进行的逻辑功能
+        // 3. (自定义) 如果返回的是逻辑错误，这里暂定无人使用的 520
+        if (success === undefined || success === true || code === ERR_CODE_BIZ) {
             return response;
         }
 
+        console.error('服务器返回业务逻辑错误', response)
 
-        if (success) {
-            // 数据正常，进行的逻辑功能
-            return response
-        } else {
-            // 如果返回的 success 是 false，表明业务出错，直接触发 reject
-            globalErrorMessageHandler(message || '服务器忙', response)
-            // 抛出的错误，被 catch 捕获
-            return Promise.reject(new Error(message))
-        }
+        // 抛出的错误，被 catch 捕获
+        return Promise.reject(new Error(message))
     }, error => {
         // 对响应错误做点什么
 
@@ -131,15 +127,16 @@ function addErrorInterceptor() {
     })
 }
 
-function setGlobalHeader (key, value){
-    storage.set("HD:"+key,value)
+function setGlobalHeader(key, value) {
+    storage.set("HD:" + key, value)
 }
-function getGlobalHeaders(){
+
+function getGlobalHeaders() {
     const result = {}
     let data = storage.data();
     for (let key in data) {
         const value = data[key];
-        if(key.startsWith("HD:")){
+        if (key.startsWith("HD:")) {
             key = key.substring("HD:".length)
             result[key] = value
         }
@@ -147,11 +144,11 @@ function getGlobalHeaders(){
     return result;
 }
 
-function get (url, params = null) {
+function get(url, params = null) {
     return axiosInstance.get(url, {params})
 }
 
- function post(url, data, params =null) {
+function post(url, data, params = null) {
     return axiosInstance.post(url, data, {
         params
     })
@@ -168,7 +165,7 @@ function postForm(url, data) {
  * @param sort
  * @returns {Promise<unknown>}
  */
-function requestAntdSpringPageData(url, params, sort, method='GET') {
+function requestAntdSpringPageData(url, params, sort, method = 'GET') {
     params.pageNumber = params.current;
     delete params.current
     if (sort) {
