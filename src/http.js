@@ -1,7 +1,7 @@
 import {storage} from "./storage";
 import axios from "axios";
 
-export const http = {}
+
 
 
 const axiosInstance = axios.create({
@@ -48,10 +48,14 @@ axiosInstance.interceptors.response.use(res => {
  * @param error 原始错误信息
  */
 
-http.globalErrorMessageHandler = function (msg, error) {
+let  globalErrorMessageHandler =(msg, error)=> {
     console.log('请求异常', msg, error)
     console.log('您可以使用 http.globalErrorMessageHandler 设置提示方式')
     alert(msg)
+}
+
+function setGlobalErrorMessageHandler(fn){
+    globalErrorMessageHandler = fn;
 }
 
 addErrorInterceptor()
@@ -111,7 +115,7 @@ function addErrorInterceptor() {
             return response
         } else {
             // 如果返回的 success 是 false，表明业务出错，直接触发 reject
-            http.globalErrorMessageHandler(message || '服务器忙', response)
+            globalErrorMessageHandler(message || '服务器忙', response)
             // 抛出的错误，被 catch 捕获
             return Promise.reject(new Error(message))
         }
@@ -121,16 +125,16 @@ function addErrorInterceptor() {
         let {message, code, response} = error;
         let msg = response ? STATUS_MESSAGE[response.status] : axiosInstance_CODE_MESSAGE[code];
 
-        http.globalErrorMessageHandler(msg || message, error)
+        globalErrorMessageHandler(msg || message, error)
 
         return Promise.reject(error)
     })
 }
 
-http.setGlobalHeader = function (key, value){
+function setGlobalHeader (key, value){
     storage.set("HD:"+key,value)
 }
-http.getGlobalHeaders = function (){
+function getGlobalHeaders(){
     const result = {}
     let data = storage.data();
     for (let key in data) {
@@ -143,22 +147,22 @@ http.getGlobalHeaders = function (){
     return result;
 }
 
-http.get = function (url, params) {
+function get (url, params) {
     return axiosInstance.get(url, {params})
 }
 
-http.post = function (url, data, params =null) {
+ function post(url, data, params =null) {
     return axiosInstance.post(url, data, {
         params
     })
 }
 
-http.postForm = function (url, data) {
+function postForm(url, data) {
     return axiosInstance.postForm(url, data)
 }
 
 
-http.downloadFile = function (url, params) {
+function downloadFile(url, params) {
     console.log('下载中...')
 
     let config = {
@@ -211,3 +215,12 @@ http.downloadFile = function (url, params) {
     })
 
 };
+export const http = {
+    setGlobalErrorMessageHandler,
+    setGlobalHeader,
+    getGlobalHeaders,
+    get,
+    post,
+    postForm,
+    downloadFile
+}

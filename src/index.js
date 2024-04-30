@@ -6,6 +6,7 @@ import {DATE} from "./date";
 import {http} from "./http";
 import {ARR} from "./arr";
 import {STR} from "./str";
+import {HTML} from "./html";
 
 
 // 字符串扩展
@@ -173,5 +174,6 @@ export const hutool = {
     http,
     date: DATE,
     arr: ARR,
-    str: STR
+    str: STR,
+    html:HTML
 }
