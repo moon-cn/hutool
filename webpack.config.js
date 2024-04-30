@@ -8,13 +8,13 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "index.js",
-        library: {
+        // 浏览器直接使用
+         library: {
             name:  "hutool",
-            type: "umd"
+             type: "umd"
         },
         clean: true
     },
     externals: {
-
     }
 };

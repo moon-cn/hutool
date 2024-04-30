@@ -1,10 +1,10 @@
 {
   "name": "@moon-cn/hutool",
-  "version": "1.0.0-beta.15",
+  "version": "1.0.0-beta.19",
   "description": "javascript util",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moon-cn/js-util.git"
+    "url": "https://github.com/moon-cn/hutool.git"
   },
   "main": "dist/index.js",
   "scripts": {

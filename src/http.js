@@ -147,7 +147,7 @@ function getGlobalHeaders(){
     return result;
 }
 
-function get (url, params) {
+function get (url, params = null) {
     return axiosInstance.get(url, {params})
 }
 
@@ -161,6 +161,38 @@ function postForm(url, data) {
     return axiosInstance.postForm(url, data)
 }
 
+/**
+ * 分页请求, 正对前端为antd的ProTable
+ * @param url
+ * @param params
+ * @param sort
+ * @returns {Promise<unknown>}
+ */
+function requestAntdSpringPageData(url, params, sort, method='GET') {
+    params.pageNumber = params.current;
+    delete params.current
+    if (sort) {
+        let keys = Object.keys(sort);
+        if (keys.length > 0) {
+            let key = keys[0];
+            let dir = sort[key] === 'ascend' ? 'asc' : 'desc';
+            params.orderBy = key + "," + dir
+        }
+    }
+
+
+    return new Promise((resolve, reject) => {
+        get(url, params).then(pageable => {
+            // 按pro table 的格式修改数据结构
+            pageable.data = pageable.content;
+            pageable.success = true;
+            pageable.total = pageable.totalElements;
+            resolve(pageable)
+        }).catch(e => {
+            reject(e)
+        })
+    })
+}
 
 function downloadFile(url, params) {
     console.log('下载中...')
@@ -222,5 +254,7 @@ export const http = {
     get,
     post,
     postForm,
-    downloadFile
+    downloadFile,
+
+    requestAntdSpringPageData
 }
