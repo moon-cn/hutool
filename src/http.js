@@ -101,11 +101,10 @@ function addErrorInterceptor() {
     }
 
     axiosInstance.interceptors.response.use(response => {
-        let {success, message, code} = response; // 这里默认服务器返回的包含 success 和message 字段， 通常框架都有
+        let {success, message} = response; // 这里默认服务器返回的包含 success 和message 字段， 通常框架都有
 
         // 1. 如果框架没有返回 success ，则不处理错误信息，因为无法判断是否成功
         // 2. 数据正常，进行的逻辑功能
-        // 3. (自定义) 如果返回的是逻辑错误，这里暂定无人使用的 520
         if (success === undefined || success === true ) {
             return response;
         }
