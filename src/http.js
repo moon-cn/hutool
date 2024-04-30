@@ -9,7 +9,6 @@ const axiosInstance = axios.create({
 
 const AUTH_STORE_KEYS = ['jwt', 'appToken', 'token', 'Authorization'];
 
-let ERR_CODE_BIZ = 520;
 
 function getToken() {
     for (let key of AUTH_STORE_KEYS) {
@@ -107,7 +106,7 @@ function addErrorInterceptor() {
         // 1. 如果框架没有返回 success ，则不处理错误信息，因为无法判断是否成功
         // 2. 数据正常，进行的逻辑功能
         // 3. (自定义) 如果返回的是逻辑错误，这里暂定无人使用的 520
-        if (success === undefined || success === true || code === ERR_CODE_BIZ) {
+        if (success === undefined || success === true ) {
             return response;
         }
 
