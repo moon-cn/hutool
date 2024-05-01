@@ -9,12 +9,13 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename: "index.js",
         // 浏览器直接使用
-         library: {
-            name:  "hutool",
-             type: "umd"
+        library: {
+            name: "hutool",
+            type: "umd"
         },
         clean: true
     },
     externals: {
+        axios: "axios"
     }
 };
