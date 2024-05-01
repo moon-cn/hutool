@@ -48,3 +48,22 @@
         }
     }
 }
+
+
+function findByKey(key, list, keyName="id") {
+    for (let item of list) {
+        if (item[keyName] === key) {
+            return item;
+        }
+        if (item.children && item.children.length) {
+            const rs = findByKey(key, item.children, keyName)
+            if (rs) {
+                return rs;
+            }
+        }
+    }
+}
+
+export const TREE = {
+     findByKey
+}
