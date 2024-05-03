@@ -1,5 +1,5 @@
 
-function getIframeCommonProps() {
+export function getIframeCommonProps() {
 
     return {
         width: '100%',
@@ -11,6 +11,3 @@ function getIframeCommonProps() {
 
 
 
-export const HTML = {
-    getIframeCommonProps
-}

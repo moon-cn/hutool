@@ -1,10 +1,9 @@
-
 // 数据结构 - tree
 
 // 为方便起见，默认 3个字段 id， pid， children
 
 
- function list2Tree(data, idKey = 'id', pidKey = 'pid') {
+export function arrayToTree(data, idKey = 'id', pidKey = 'pid') {
     const map = {};
     for (let i = 0; i < data.length; i++) {
         const node = data[i];
@@ -36,7 +35,7 @@
  * @param tree
  * @param callback
  */
- function traverseTree(tree, callback) {
+export function traverseTree(tree, callback) {
     // 遍历当前层级的节点
     for (let i = 0; i < tree.length; i++) {
         const node = tree[i];
@@ -50,7 +49,7 @@
 }
 
 
-function findByKey(key, list, keyName="id") {
+export function findByKey(key, list, keyName = "id") {
     for (let item of list) {
         if (item[keyName] === key) {
             return item;
@@ -62,8 +61,4 @@ function findByKey(key, list, keyName="id") {
             }
         }
     }
-}
-
-export const TREE = {
-     findByKey
 }

@@ -1,8 +1,8 @@
-import {storage} from "./storage";
+import {_storage} from "./storage";
 import axios from "axios";
 
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
     withCredentials: true, // 带cookie
     baseURL: '/',
 })
@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
 const AUTH_STORE_KEYS = ['jwt', 'appToken', 'token', 'Authorization'];
 
 
-function getToken() {
+export function getToken() {
     for (let key of AUTH_STORE_KEYS) {
         let v = localStorage.getItem(key);
         if (v) {
@@ -18,7 +18,7 @@ function getToken() {
         }
     }
 
-    return storage.get("HD:Authorization")
+    return _storage.get("HD:Authorization")
 }
 
 axiosInstance.interceptors.request.use(
@@ -53,14 +53,14 @@ let globalErrorMessageHandler = (msg, error) => {
     alert(msg)
 }
 
-function setGlobalErrorMessageHandler(fn) {
+export function setGlobalErrorMessageHandler(fn) {
     globalErrorMessageHandler = fn;
 }
 
 addErrorInterceptor()
 
 
-function addErrorInterceptor() {
+export function addErrorInterceptor() {
     const STATUS_MESSAGE = {
         200: '服务器成功返回请求的数据',
         201: '新增或修改数据成功',
@@ -115,13 +115,13 @@ function addErrorInterceptor() {
         })
 }
 
-function setGlobalHeader(key, value) {
-    storage.set("HD:" + key, value)
+export function setGlobalHeader(key, value) {
+    _storage.set("HD:" + key, value)
 }
 
-function getGlobalHeaders() {
+export function getGlobalHeaders() {
     const result = {}
-    let data = storage.data();
+    let data = _storage.data();
     for (let key in data) {
         const value = data[key];
         if (key.startsWith("HD:")) {
@@ -132,17 +132,17 @@ function getGlobalHeaders() {
     return result;
 }
 
-function get(url, params = null) {
+export function get(url, params = null) {
     return axiosInstance.get(url, {params})
 }
 
-function post(url, data, params = null) {
+export function post(url, data, params = null) {
     return axiosInstance.post(url, data, {
         params
     })
 }
 
-function postForm(url, data) {
+export function postForm(url, data) {
     return axiosInstance.postForm(url, data)
 }
 
@@ -153,7 +153,7 @@ function postForm(url, data) {
  * @param sort
  * @returns {Promise<unknown>}
  */
-function requestAntdSpringPageData(url, params, sort, method = 'GET') {
+export function requestAntdSpringPageData(url, params, sort, method = 'GET') {
     params.pageNumber = params.current;
     delete params.current
     if (sort) {
@@ -179,7 +179,7 @@ function requestAntdSpringPageData(url, params, sort, method = 'GET') {
     })
 }
 
-function downloadFile(url, params) {
+export function downloadFile(url, params) {
     console.log('下载中...')
 
     let config = {
@@ -232,15 +232,3 @@ function downloadFile(url, params) {
     })
 
 };
-export const http = {
-    axiosInstance,
-    setGlobalErrorMessageHandler,
-    setGlobalHeader,
-    getGlobalHeaders,
-    get,
-    post,
-    postForm,
-    downloadFile,
-
-    requestAntdSpringPageData
-}

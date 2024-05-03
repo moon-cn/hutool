@@ -1,27 +1,26 @@
-import {STR} from "./str";
 
 const STORAGE_KEY = "__storage"
-export const storage = {}
 
-storage.data = function () {
+function data() {
     let hexString = localStorage.getItem(STORAGE_KEY) || "";
     if (!hexString) {
         return {}
     }
-    return JSON.parse(STR.decryptString(hexString))
+    return JSON.parse(decryptString(hexString))
 }
-storage.get = function (key) {
+
+function get(key) {
     return this.data()[key]
 }
 
-storage.set = function (key, value) {
+function set(key, value) {
     let data = this.data();
     data[key] = value
     const dataStr = JSON.stringify(data)
-    localStorage.setItem(STORAGE_KEY, STR.encryptString(dataStr))
+    localStorage.setItem(STORAGE_KEY, encryptString(dataStr))
 }
 
-storage.keys = function () {
+function keys() {
     return this.data().keys();
 }
 

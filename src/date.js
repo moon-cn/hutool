@@ -1,7 +1,6 @@
-import {STR} from "./str";
 
 
-function year(date) {
+export function year(date) {
     return date.getFullYear();
 }
 
@@ -10,17 +9,17 @@ function year(date) {
  * @param date
  * @returns {*}
  */
-function month(date) {
+export function month(date) {
     const n = date.getMonth() + 1; // （注意月份从0开始，所以要加1）
-    return STR.zeroPad(n, 2)
+    return zeroPad(n, 2)
 }
 
 /**
  * 获取日期，
  * @param date
  */
-function date(date) {
-    return STR.zeroPad(date.getDate(), 2)
+export function date(date) {
+    return zeroPad(date.getDate(), 2)
 }
 
 /**
@@ -28,27 +27,27 @@ function date(date) {
  * @param date
  * @returns {string}
  */
-function hour(date) {
-    return STR.zeroPad(date.getHours(), 2);
+export function hour(date) {
+    return zeroPad(date.getHours(), 2);
 }
 
-function minute(date) {
-    return STR.zeroPad(date.getMinutes(), 2);
+export function minute(date) {
+    return zeroPad(date.getMinutes(), 2);
 }
 
-function second(date) {
-    return STR.zeroPad(date.getSeconds(), 2);
+export function second(date) {
+    return zeroPad(date.getSeconds(), 2);
 }
 
-function formatDate(d) {
+export function formatDate(d) {
     return year(d) + '-' + month(d) + "-" + date(d)
 }
 
-function formatTime(d) {
+export function formatTime(d) {
     return hour(d) + ':' + minute(d) + ":" + second(d)
 }
 
-function formatDateTime(d) {
+export function formatDateTime(d) {
     return formatDate(d) + " " + formatTime(d)
 }
 
@@ -57,14 +56,14 @@ function formatDateTime(d) {
  * @param d
  * @returns {string} 2020年1月30日
  */
-function formatDateCn(d) {
+export function formatDateCn(d) {
     return year(d) + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日'
 }
 
 /***
  当前时间, 如 2022-01-23 11:59:59
  */
-function now() {
+export function now() {
     return formatDateTime(new Date());
 }
 
@@ -72,15 +71,15 @@ function now() {
  * 当前日期 ，如 2022-01-23
  *
  */
-function today() {
+export function today() {
     return formatDate(new Date());
 }
 
-function thisYear() {
+export function thisYear() {
     return year(new Date())
 }
 
-function thisMonth() {
+export function thisMonth() {
     return month(new Date())
 }
 
@@ -89,7 +88,7 @@ function thisMonth() {
  * 显示友好时间， 如 2小时前， 1周前
  * @param pastDate 日期, 支持Date， String， Number
  */
-function friendlyTime(pastDate) {
+export function friendlyTime(pastDate) {
     if (pastDate == null) {
         return
     }
@@ -139,7 +138,7 @@ function friendlyTime(pastDate) {
  * @param time 数字 （Date.getTime）
  * @returns {string|null}
  */
-function friendlyTotalTime(time) {
+export function friendlyTotalTime(time) {
     if (time == null || time === '-') {
         return null
     }
@@ -160,23 +159,3 @@ function friendlyTotalTime(time) {
     return min + '分' + seconds + '秒'
 }
 
-export const DATE = {
-    year,
-    month,
-    date,
-    hour,
-    minute,
-    second,
-    formatDate,
-    formatTime,
-    formatDateTime,
-    formatDateCn,
-    now,
-    today,
-    thisMonth,
-    thisYear,
-
-    friendlyTime,
-    friendlyTotalTime
-
-}

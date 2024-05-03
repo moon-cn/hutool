@@ -3,7 +3,7 @@
  * @param str
  * @returns {boolean}
  */
-function contains(s, str) {
+export function contains(s, str) {
     return s.includes(str);
 }
 
@@ -12,7 +12,7 @@ function contains(s, str) {
  * 判断字符串出现的个数
  * @param str
  */
-function count(s, str) {
+export function count(s, str) {
     let count = 0;
     let index = 0;
 
@@ -30,27 +30,27 @@ function count(s, str) {
 
 
 // 将字符串的首字母转换为大写
-function capitalize(s) {
+export function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
 // 颠倒字符串的顺序
-function reverse(s) {
+export function reverse(s) {
     return s.split('').reverse().join('');
 }
 
-function substringAfter(s, sub) {
+export function substringAfter(s, sub) {
     const index = s.indexOf(sub)
     return index === -1 ? "" : s.substring(index + 1);
 }
 
-function substringBefore(s, sub) {
+export function substringBefore(s, sub) {
     const index = s.indexOf(sub)
     return index === -1 ? "" : s.substring(0, index);
 }
 
 // 混淆
-function obfuscateString(str) {
+export function obfuscateString(str) {
     return str.split('').map(char => char + 1).join('');
 }
 
@@ -61,7 +61,7 @@ function obfuscateString(str) {
  * @param length 总长度，不狗
  * @returns {string}
  */
-function zeroPad(input, length) {
+export function zeroPad(input, length) {
     var str = String(input);
     var zerosNeeded = length - str.length;
     if (zerosNeeded > 0) {
@@ -71,7 +71,7 @@ function zeroPad(input, length) {
 }
 
 
-function encryptString(str) {
+export function encryptString(str) {
     let encrypted = '';
     for (let i = 0; i < str.length; i++) {
         let charCode = str.charCodeAt(i);
@@ -81,7 +81,7 @@ function encryptString(str) {
     return encrypted;
 }
 
-function decryptString(hexString) {
+export function decryptString(hexString) {
     let decrypted = '';
     for (let i = 0; i < hexString.length; i += 4) {
         let hexCharCode = hexString.substr(i, 4);
@@ -98,7 +98,7 @@ function decryptString(hexString) {
  * 获取字符串长度，英文字符 长度1，中文字符长度2
  * @param {*} str
  */
-function getWidth(str) {
+export function getWidth(str) {
     return str.split('').reduce((pre, cur) => {
         const charCode = cur.charCodeAt(0);
         if (charCode >= 0 && charCode <= 128) {
@@ -108,7 +108,7 @@ function getWidth(str) {
     }, 0);
 }
 
-function subByWidth(str, maxLength) {
+export function subByWidth(str, maxLength) {
     let showLength = 0;
     return str.split('').reduce((pre, cur) => {
         const charCode = cur.charCodeAt(0);
@@ -131,7 +131,7 @@ function subByWidth(str, maxLength) {
  * @param len 字符长度，注：中文字符算2
  * @constructor
  */
-function ellipsis(str, len, suffix='...') {
+export function ellipsis(str, len, suffix='...') {
     if (!str) {
         return str;
     }
@@ -149,13 +149,13 @@ function ellipsis(str, len, suffix='...') {
     return subByWidth(str, len) + '...';
 }
 
-function isStr(value) {
+export function isStr(value) {
     return typeof value === "string"
 }
 
 
 // 转驼峰
- function toCamelCase(str,firstLower = true) {
+export function toCamelCase(str,firstLower = true) {
     let result = str.replace(/\_(\w)/g, function (all, letter) {
         return letter.toUpperCase();
     });
@@ -167,7 +167,7 @@ function isStr(value) {
     return result;
 }
 
-function toUnderlineCase(name) {
+export function toUnderlineCase(name) {
     if (name == null) {
         return null;
     }
@@ -178,24 +178,3 @@ function toUnderlineCase(name) {
     return result;
 }
 
-export const STR = {
-    contains,
-    count,
-    capitalize,
-    reverse,
-    substringAfter,
-    substringBefore,
-    obfuscateString,
-    zeroPad,
-    encryptString,
-    decryptString,
-
-    getWidth,
-    subByWidth,
-    ellipsis,
-
-    toCamelCase,
-    toUnderlineCase
-
-
-}

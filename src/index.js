@@ -1,18 +1,20 @@
-import {storage} from "./storage";
-import {DATE} from "./date";
-import {http} from "./http";
-import {ARR} from "./arr";
-import {STR} from "./str";
-import {HTML} from "./html";
-import {TREE} from "./tree";
+import * as storage from "./storage";
+import * as date from "./date";
+import * as http from "./http";
+import * as arr from "./arr";
+import * as html from "./html";
+import * as tree from "./tree";
+import * as url from "./url"
+import * as str from "./str"
 
-
-export default {
+const hutool = {
     storage,
     http,
-    date: DATE,
-    arr: ARR,
-    str: STR,
-    html:HTML,
-    tree:TREE
+    date,
+    arr,
+    str,
+    html,
+    tree,
+    url
 }
+export default hutool

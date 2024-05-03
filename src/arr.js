@@ -1,8 +1,8 @@
-function contains(arr, item) {
+export function contains(arr, item) {
     return arr.indexOf(item) !== -1;
 }
 
-function containsAny(arr, ...items) {
+export function containsAny(arr, ...items) {
     for (let item of items) {
         if (arr.contains(item)) {
             return true
@@ -11,11 +11,11 @@ function containsAny(arr, ...items) {
     return false;
 }
 
-function add(arr, item) {
+export function add(arr, item) {
     arr.push(item)
 }
 
-function addAt(arr, index, item) {
+export function addAt(arr, index, item) {
     arr.splice(index, 0, item);
 }
 
@@ -24,17 +24,17 @@ function addAt(arr, index, item) {
  * @param index
  * @param item
  */
-function addAll(arr, items) {
+export function addAll(arr, items) {
     for (let i = 0; i < items.length; i++) {
         arr.push(items[i])
     }
 }
 
-function removeAt(arr, index) {
+export function removeAt(arr, index) {
     arr.splice(index, 1)
 }
 
-function remove(arr, item) {
+export function remove(arr, item) {
     const index = arr.indexOf(item);
     if (index !== -1) {
         removeAt(arr, index)
@@ -44,7 +44,7 @@ function remove(arr, item) {
 /**
  * 清空
  */
-function clear(arr) {
+export function clear(arr) {
     arr.length = 0
 }
 
@@ -53,33 +53,30 @@ function clear(arr) {
  * @param fromIndex  low endpoint (inclusive) of the subList toIndex
  * @param toIndex  high endpoint (exclusive) of the subList
  */
-function sub(arr, fromIndex, toIndex) {
+export function sub(arr, fromIndex, toIndex) {
     return arr.slice(fromIndex, toIndex);
 }
 
-function swap(arr, item1, item2) {
+export function swap(arr, item1, item2) {
     const index1 = arr.indexOf(item1);
     const index2 = arr.indexOf(item2);
 
     arr[index1] = item2;
     arr[index2] = item1;
 }
-function insert(arr, index, item) {
+export function insert(arr, index, item) {
     arr.splice(index, 0, item);
 }
-function pushIfNotExist(arr, item) {
+export function pushIfNotExist(arr, item) {
     const index = arr.indexOf(item);
     if (index == -1) {
         arr.push(item);
     }
 }
 
-function pushAll(arr, newArr) {
+export function pushAll(arr, newArr) {
     for (let i = 0; i < newArr.length; i++) {
         arr.push(newArr[i]);
     }
 }
 
-export const ARR = {
-    contains,containsAny,add,addAt,addAll,remove,removeAt, clear, sub,pushAll, pushIfNotExist, insert, swap
-}
