@@ -100,29 +100,19 @@ function addErrorInterceptor() {
         ETIMEDOUT: "连接超时"
     }
 
-    axiosInstance.interceptors.response.use(response => {
-        let {success, message} = response; // 这里默认服务器返回的包含 success 和message 字段， 通常框架都有
-
-        // 1. 如果框架没有返回 success ，则不处理错误信息，因为无法判断是否成功
-        // 2. 数据正常，进行的逻辑功能
-        if (success === undefined || success === true ) {
+    axiosInstance.interceptors.response.use(
+        response => {
             return response;
-        }
+        },
+        error => {
+            // 对响应错误做点什么
+            let {message, code, response} = error;
+            let msg = response ? STATUS_MESSAGE[response.status] : axiosInstance_CODE_MESSAGE[code];
 
-        console.error('服务器返回业务逻辑错误', response)
+            globalErrorMessageHandler(msg || message, error)
 
-        // 抛出的错误，被 catch 捕获
-        return Promise.reject(new Error(message))
-    }, error => {
-        // 对响应错误做点什么
-
-        let {message, code, response} = error;
-        let msg = response ? STATUS_MESSAGE[response.status] : axiosInstance_CODE_MESSAGE[code];
-
-        globalErrorMessageHandler(msg || message, error)
-
-        return Promise.reject(error)
-    })
+            return Promise.reject(error)
+        })
 }
 
 function setGlobalHeader(key, value) {
@@ -243,6 +233,7 @@ function downloadFile(url, params) {
 
 };
 export const http = {
+    axiosInstance,
     setGlobalErrorMessageHandler,
     setGlobalHeader,
     getGlobalHeaders,
