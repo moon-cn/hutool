@@ -57,6 +57,29 @@ function sub(arr, fromIndex, toIndex) {
     return arr.slice(fromIndex, toIndex);
 }
 
+function swap(arr, item1, item2) {
+    const index1 = arr.indexOf(item1);
+    const index2 = arr.indexOf(item2);
+
+    arr[index1] = item2;
+    arr[index2] = item1;
+}
+function insert(arr, index, item) {
+    arr.splice(index, 0, item);
+}
+function pushIfNotExist(arr, item) {
+    const index = arr.indexOf(item);
+    if (index == -1) {
+        arr.push(item);
+    }
+}
+
+function pushAll(arr, newArr) {
+    for (let i = 0; i < newArr.length; i++) {
+        arr.push(newArr[i]);
+    }
+}
+
 export const ARR = {
-    contains,containsAny,add,addAt,addAll,remove,removeAt, clear, sub
+    contains,containsAny,add,addAt,addAll,remove,removeAt, clear, sub,pushAll, pushIfNotExist, insert, swap
 }

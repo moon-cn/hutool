@@ -1,3 +1,4 @@
+// 参考 https://www.webpackjs.com/guides/author-libraries#root
 const path = require("path");
 
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
         // 浏览器直接使用
         library: {
             name: "hutool",
-            type: "umd"
+            type: "umd",
         },
         clean: true
     },
