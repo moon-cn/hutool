@@ -15,22 +15,35 @@
     }
 
     function assert(title, maybe, act) {
-        log("----------------------")
-        log(title)
-        log("期望: " + maybe)
-        log("实际: " + act)
-        if (maybe === act) {
+        log("--------------------------------------------------------------------------------")
+        log("测试：" + title)
+        log("期望: " + JSON.stringify(maybe))
+        log("实际: " + JSON.stringify(act))
+        if (JSON.stringify(maybe) === JSON.stringify(act)) {
             log('成功', 'green')
         } else {
             log('失败', 'red')
         }
     }
+    window.onerror = function (err) {
+        document.writeln(err)
+    }
 </script>
 
 <script>
-    assert("检测字符串填充", '00abc', hutool.str.zeroPad("abc", 5))
-    assert("检测字符串填充", 'abc', hutool.str.zeroPad("abc", 1))
-</script>
+    log('页面基础URL为：' + hutool.url.baseUrl(location.href))
+    log('页面参数' + JSON.stringify(hutool.url.params(location.href)))
+    
+    const url = "https://baidu.com?name=jiangtao&age=35"
+    assert("baseUrl", "https://baidu.com", hutool.url.baseUrl(url))
+    assert("params", {name: 'jiangtao', age: '35'}, hutool.url.params(url))
+    assert("replaceParam", "https://baidu.com?name=zhangsan&age=35", hutool.url.replaceParam(url,'name','zhangsan'))
 
+    assert("zeroPad", '00abc', hutool.str.zeroPad("abc", 5))
+    assert("zeroPad", 'abc', hutool.str.zeroPad("abc", 1))
+
+    assert("contains", true, hutool.str.contains("abc", "a"))
+    assert("contains", false, hutool.str.contains("abc", "d"))
+</script>
 </body>
 </html>
