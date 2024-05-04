@@ -1,5 +1,10 @@
 {
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "src/**/test**"
+  ],
   "compilerOptions": {
     "allowJs": true,
     // Generate d.ts files
