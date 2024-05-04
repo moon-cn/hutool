@@ -55,21 +55,26 @@ export function obfuscateString(str) {
 }
 
 
-/**
- * 补零
- * @param input 输入字符串说数字等
- * @param length 总长度，不狗
- * @returns {string}
- */
-export function zeroPad(input, length) {
+
+export function pad(input, totalLen, padChar = '0') {
     var str = String(input);
-    var zerosNeeded = length - str.length;
+    var zerosNeeded = totalLen - str.length;
     if (zerosNeeded > 0) {
-        str = "0".repeat(zerosNeeded) + str;
+        str = padChar.repeat(zerosNeeded) + str;
     }
     return str;
 }
 
+/**
+ * 补零
+ * @param input 输入字符串说数字等
+ * @param totalLen 总长度，不狗
+ * @returns {string}
+ * @deprecated use pad
+ */
+export function zeroPad(input, totalLen) {
+   return  pad(input, totalLen)
+}
 
 export function encryptString(str) {
     let encrypted = '';

@@ -80,3 +80,25 @@ export function pushAll(arr, newArr) {
     }
 }
 
+/**
+ * 获取对象数组中某一属性值最大的对象
+ * @param arr
+ */
+export function maxBy(arr, key){
+    if (arr == null || arr.length === 0) {
+        return undefined;
+    }
+
+    let maxElement;
+    let maxValue = -Infinity;
+
+    for (const element of arr) {
+        const value = element[key];
+        if (value > maxValue) {
+            maxValue = value;
+            maxElement = element;
+        }
+    }
+
+    return maxElement;
+}
