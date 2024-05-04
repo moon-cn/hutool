@@ -33,7 +33,7 @@
 <script>
     log('页面基础URL为：' + hutool.url.baseUrl(location.href))
     log('页面参数' + JSON.stringify(hutool.url.params(location.href)))
-    
+
     const url = "https://baidu.com?name=jiangtao&age=35"
     assert("baseUrl", "https://baidu.com", hutool.url.baseUrl(url))
     assert("params", {name: 'jiangtao', age: '35'}, hutool.url.params(url))

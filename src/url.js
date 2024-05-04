@@ -8,17 +8,15 @@ export function params(urlStr) {
         return {}
     }
 
-    var url = new URL(urlStr);
-    var params = new URLSearchParams(url.search);
+    const url = new URL(urlStr);
+    const params = new URLSearchParams(url.search);
 
     const result = {}
     for (const [key, value] of params.entries()) {
-        console.log(key + ': ' + value);
         result[key] = value;
     }
 
     return result
-
 }
 
 /**
@@ -41,23 +39,16 @@ export function paramsToSearch(params) {
     if (!params) {
         return "";
     }
-
     const buffer = []
-
     for (let k in params) {
         let v = params[k]
-
         buffer.push(k + '=' + v);
-
     }
-
     return buffer.join('&')
-
 }
 
 export function replaceParam(url, key, value) {
     const p = params(url)
     p[key] = value;
-
     return baseUrl(url) + '?' + paramsToSearch(p);
 }
