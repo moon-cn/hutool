@@ -1,7 +1,7 @@
 
 const STORAGE_KEY = "__storage"
 
-function data() {
+export function data() {
     let hexString = localStorage.getItem(STORAGE_KEY) || "";
     if (!hexString) {
         return {}
@@ -9,11 +9,11 @@ function data() {
     return JSON.parse(decryptString(hexString))
 }
 
-function get(key) {
+export function get(key) {
     return this.data()[key]
 }
 
-function set(key, value) {
+export function set(key, value) {
     let data = this.data();
     data[key] = value
     const dataStr = JSON.stringify(data)
