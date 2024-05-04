@@ -1,5 +1,5 @@
-import {_storage} from "./storage";
 import axios from "axios";
+import * as storage from "./storage";
 
 
 export const axiosInstance = axios.create({
@@ -18,7 +18,7 @@ export function getToken() {
         }
     }
 
-    return _storage.get("HD:Authorization")
+    return storage.get("HD:Authorization")
 }
 
 axiosInstance.interceptors.request.use(
@@ -116,12 +116,12 @@ export function addErrorInterceptor() {
 }
 
 export function setGlobalHeader(key, value) {
-    _storage.set("HD:" + key, value)
+    storage.set("HD:" + key, value)
 }
 
 export function getGlobalHeaders() {
     const result = {}
-    let data = _storage.data();
+    let data = storage.data();
     for (let key in data) {
         const value = data[key];
         if (key.startsWith("HD:")) {

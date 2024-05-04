@@ -1,3 +1,4 @@
+import {decryptString, encryptString} from "./str";
 
 const STORAGE_KEY = "__storage"
 
@@ -10,17 +11,17 @@ export function data() {
 }
 
 export function get(key) {
-    return this.data()[key]
+    return data()[key]
 }
 
 export function set(key, value) {
-    let data = this.data();
+    let data = data();
     data[key] = value
     const dataStr = JSON.stringify(data)
     localStorage.setItem(STORAGE_KEY, encryptString(dataStr))
 }
 
-function keys() {
-    return this.data().keys();
+export function keys() {
+    return data().keys();
 }
 

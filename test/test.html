@@ -10,10 +10,26 @@
 <script src="../dist/index.js"></script>
 
 <script>
+    function log(msg, color = 'black') {
+        document.writeln(`<div style='color:${color}'>${msg}</div>`)
+    }
 
+    function assert(title, maybe, act) {
+        log("----------------------")
+        log(title)
+        log("期望: " + maybe)
+        log("实际: " + act)
+        if (maybe === act) {
+            log('成功', 'green')
+        } else {
+            log('失败', 'red')
+        }
+    }
+</script>
 
-    const str = hutool.str.zeroPad("abc", 10)
-    console.log(str)
+<script>
+    assert("检测字符串填充", '00abc', hutool.str.zeroPad("abc", 5))
+    assert("检测字符串填充", 'abc', hutool.str.zeroPad("abc", 1))
 </script>
 
 </body>
