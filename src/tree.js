@@ -2,7 +2,13 @@
 
 // 为方便起见，默认 3个字段 id， pid， children
 
-
+/**
+ * 将数组转换为树
+ * @param data
+ * @param idKey
+ * @param pidKey
+ * @returns {*[]}
+ */
 export function arrayToTree(data, idKey = 'id', pidKey = 'pid') {
     const map = {};
     for (let i = 0; i < data.length; i++) {
@@ -12,7 +18,6 @@ export function arrayToTree(data, idKey = 'id', pidKey = 'pid') {
     }
 
     const root = [];
-
     for (let i = 0; i < data.length; i++) {
         const node = data[i];
         let pid = node[pidKey];
@@ -47,7 +52,6 @@ export function traverseTree(tree, callback) {
         }
     }
 }
-
 
 export function findByKey(key, list, keyName = "id") {
     for (let item of list) {
