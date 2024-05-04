@@ -11,19 +11,17 @@
 
 <script>
     function log(msg, color = 'black') {
-        document.writeln(`<div style='color:${color}'>${msg}</div>`)
+        document.writeln(`<span style='color:${color};font-size: smaller'>${msg}</span>`)
     }
 
     function assert(title, maybe, act) {
-        log("--------------------------------------------------------------------------------")
-        log("测试：" + title)
-        log("期望: " + JSON.stringify(maybe))
-        log("实际: " + JSON.stringify(act))
-        if (JSON.stringify(maybe) === JSON.stringify(act)) {
-            log('成功', 'green')
-        } else {
-            log('失败', 'red')
-        }
+        log("<br/>")
+
+        let ok = JSON.stringify(maybe) === JSON.stringify(act);
+        let color = ok ? 'green': 'red'
+        log(title, color)
+        log("期望: " + JSON.stringify(maybe), color)
+        log("实际: " + JSON.stringify(act), color)
     }
     window.onerror = function (err) {
         document.writeln(err)
@@ -44,6 +42,10 @@
 
     assert("contains", true, hutool.str.contains("abc", "a"))
     assert("contains", false, hutool.str.contains("abc", "d"))
+
+
+
+
 </script>
 </body>
 </html>

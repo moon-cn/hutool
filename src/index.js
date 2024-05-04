@@ -6,6 +6,7 @@ import * as html from "./html";
 import * as tree from "./tree";
 import * as url from "./url"
 import * as str from "./str"
+import {eventBus} from "./eventBus";
 
 export * as storage from "./storage";
 export * as date from "./date";
@@ -15,6 +16,7 @@ export * as html from "./html";
 export * as tree from "./tree";
 export * as url from "./url"
 export * as str from "./str"
+export {eventBus} from './eventBus'
 
 const hutool = {
     storage,
@@ -24,7 +26,8 @@ const hutool = {
     str,
     html,
     tree,
-    url
+    url,
+    eventBus
 }
 
 
