@@ -3,11 +3,6 @@
  * forked form https://github.com/scottcorgan/tiny-emitter
  */
 
-/**
- * Forked from tiny-emitter
- * Copyright (c) 2017 Scott Corgan
- */
-
 export  class EventBus {
     constructor () {
         this.__stack = {}
