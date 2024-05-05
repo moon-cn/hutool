@@ -3,7 +3,7 @@
     "src/**/*"
   ],
   "exclude": [
-    "src/**/test**"
+    "src/**/**test**"
   ],
   "compilerOptions": {
     "allowJs": true,

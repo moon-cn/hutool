@@ -8,3 +8,4 @@
 /test.html
 /tsconfig.json
 /test
+*.test.d.ts

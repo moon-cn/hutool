@@ -10,7 +10,9 @@ import {
     pad,
     reverse,
     subAfter,
-    subBefore, cutByWidth, ellipsis
+    subBefore,
+    cutByWidth,
+    ellipsis, isStr
 } from "./str";
 
 
@@ -49,19 +51,24 @@ test("str.reverse", () => {
 
 
 test("str.subAfter", () => {
+
     expect(subAfter("baidu.com?name=Jack", "?")).toBe("name=Jack")
     expect(subAfter("moon-cn", ".")).toBe("moon-cn")
     expect(subAfter("moon-cn.cn", "-")).toBe("cn.cn")
     expect(subAfter("moon.cn.cn", ".")).toBe("cn.cn")
+    expect(subAfter(null, "?")).toBe(null)
 })
 
 test("str.subBefore", () => {
     expect(subBefore("baidu.com?name=Jack", "?")).toBe("baidu.com")
     expect(subBefore("baidu.com", "?")).toBe("baidu.com")
+    expect(subBefore(null, "?")).toBe(null)
+
 })
 
 test("str.obfuscateString", () => {
     expect(obfuscateString("abc") !== "abc").toBe(true)
+    expect(obfuscateString(null) ).toBe(null)
 })
 
 test("str.pad", () => {
@@ -100,4 +107,11 @@ test("str.ellipsis", () => {
     expect(ellipsis("中国", 2)).toBe("中...")
     expect(ellipsis("Go中国", 2)).toBe("Go...")
     expect(ellipsis("i中国", 2)).toBe("i...")
+})
+
+
+test("str.isStr", () => {
+    expect(isStr("abc")).toBe(true)
+    expect(isStr("")).toBe(true)
+    expect(isStr(null)).toBe(false)
 })

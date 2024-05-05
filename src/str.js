@@ -92,6 +92,12 @@ export function obfuscateString(str) {
 }
 
 
+/**
+ * 补零
+ * @param input 输入字符串说数字等
+ * @param totalLen 总长度，不狗
+ * @returns {string}
+ */
 export function pad(input, totalLen, padChar = '0') {
     if (input == null) {
         return padChar.repeat(totalLen)
@@ -104,16 +110,6 @@ export function pad(input, totalLen, padChar = '0') {
     return str;
 }
 
-/**
- * 补零
- * @param input 输入字符串说数字等
- * @param totalLen 总长度，不狗
- * @returns {string}
- * @deprecated use pad
- */
-export function zeroPad(input, totalLen) {
-    return pad(input, totalLen)
-}
 
 /**
  * 加密
