@@ -102,3 +102,12 @@ export function maxBy(arr, key){
 
     return maxElement;
 }
+
+/**
+ * 数组去重
+ * @param arr
+ * @returns {any[]}
+ */
+export function unique(arr) {
+    return [...new Set(arr)]
+}
