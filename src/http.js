@@ -165,11 +165,17 @@ export function requestAntdSpringPageData(url, params, sort, method = 'GET') {
         }
     }
 
-    return  get(url, params).then(pageable => {
+    return  get(url, params).then(response => {
+        // 判断是否被包装
+        if(response.data != null && response.data.totalElements != undefined){
+            response = response.data
+        }
         // 按pro table 的格式修改数据结构
-        pageable.data = pageable.content;
+        let pageable = {};
+        pageable.data = response.content;
         pageable.success = true;
-        pageable.total = parseInt(pageable.totalElements);
+        pageable.total = parseInt(response.totalElements);
+
         return pageable
     })
 
