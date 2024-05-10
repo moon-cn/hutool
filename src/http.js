@@ -53,11 +53,40 @@ let globalErrorMessageHandler = (msg, error) => {
     alert(msg)
 }
 
+/**
+ * @deprecated 使用init
+ *
+ * @param fn
+ */
 export function setGlobalErrorMessageHandler(fn) {
     globalErrorMessageHandler = fn;
 }
 
 addErrorInterceptor()
+
+
+/**
+ *
+ * @param errorMessageHandler
+ * @param autoReject 如何响应里面的success 字段为false，则reject
+ */
+export function init({errorMessageHandler = null, autoReject = true}) {
+    if (errorMessageHandler) {
+        globalErrorMessageHandler = errorMessageHandler
+    }
+
+    if (autoReject) {
+        axiosInstance.interceptors.response.use(response => {
+            // 注意，response是具体数据，不带header等
+            if (response.success === false) {
+                globalErrorMessageHandler(response.message, response)
+                return Promise.reject(response)
+            }
+
+            return response;
+        })
+    }
+}
 
 
 export function addErrorInterceptor() {
@@ -101,9 +130,7 @@ export function addErrorInterceptor() {
     }
 
     axiosInstance.interceptors.response.use(
-        response => {
-            return response;
-        },
+        null,
         error => {
             // 对响应错误做点什么
             let {message, code, response} = error;
@@ -165,9 +192,9 @@ export function requestAntdSpringPageData(url, params, sort, method = 'GET') {
         }
     }
 
-    return  get(url, params).then(response => {
+    return get(url, params).then(response => {
         // 判断是否被包装
-        if(response.data != null && response.data.totalElements != undefined){
+        if (response.data != null && response.data.totalElements != undefined) {
             response = response.data
         }
         // 按pro table 的格式修改数据结构
