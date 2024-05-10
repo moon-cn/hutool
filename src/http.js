@@ -192,7 +192,8 @@ export function requestAntdSpringPageData(url, params, sort, method = 'GET') {
         }
     }
 
-    return get(url, params).then(response => {
+
+    function convert(response) {
         // 判断是否被包装
         if (response.data != null && response.data.totalElements != undefined) {
             response = response.data
@@ -202,9 +203,17 @@ export function requestAntdSpringPageData(url, params, sort, method = 'GET') {
         pageable.data = response.content;
         pageable.success = true;
         pageable.total = parseInt(response.totalElements);
+        return pageable;
+    }
 
-        return pageable
-    })
+    if(method === 'GET'){
+        return get(url, params).then(convert)
+    }else if(method === "POST") {
+        return post(url, params).then(convert)
+    }else {
+        throw new Error('不支持 Method：' + method)
+    }
+
 
 }
 
