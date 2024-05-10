@@ -165,18 +165,16 @@ export function requestAntdSpringPageData(url, params, sort, method = 'GET') {
         }
     }
 
-
-    return new Promise((resolve, reject) => {
-        get(url, params).then(pageable => {
-            // 按pro table 的格式修改数据结构
-            pageable.data = pageable.content;
-            pageable.success = true;
-            pageable.total = pageable.totalElements;
-            resolve(pageable)
-        }).catch(e => {
-            reject(e)
-        })
+    return   get(url, params).then(pageable => {
+        // 按pro table 的格式修改数据结构
+        pageable.data = pageable.content;
+        pageable.success = true;
+        pageable.total = parseInt(pageable.totalElements);
+        return pageable
+    }).catch(e => {
+        reject(e)
     })
+
 }
 
 export function downloadFile(url, params) {
