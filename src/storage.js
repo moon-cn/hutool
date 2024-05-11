@@ -10,8 +10,12 @@ export function data() {
     return JSON.parse(decryptString(hexString))
 }
 
-export function get(key) {
-    return data()[key]
+export function get(key, defaultValue = null) {
+    let v = data()[key];
+    if(v == null){
+        v = defaultValue;
+    }
+    return v
 }
 
 export function set(key, value) {

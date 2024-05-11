@@ -12,6 +12,7 @@ import {debounce} from "./debounce";
 import * as dom from "./dom"
 import {uid} from "./uid";
 import * as validate from  './validate'
+import * as auth from './auth'
 
 const hutool = {
     storage,
