@@ -148,7 +148,7 @@ export function setGlobalHeader(key, value) {
 
 export function getGlobalHeaders() {
     const result = {}
-    let all = storage.data();
+    let all = storage.getAll();
     for (let key in all) {
         const value = all[key];
         if (key.startsWith("HD:")) {

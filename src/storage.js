@@ -2,7 +2,7 @@ import {decryptString, encryptString} from "./str";
 
 const STORAGE_KEY = "__storage"
 
-export function data() {
+export function getAll() {
     let hexString = localStorage.getItem(STORAGE_KEY) || "";
     if (!hexString) {
         return {}
@@ -11,7 +11,7 @@ export function data() {
 }
 
 export function get(key, defaultValue = null) {
-    let v = data()[key];
+    let v = getAll()[key];
     if(v == null){
         v = defaultValue;
     }
@@ -26,6 +26,6 @@ export function set(key, value) {
 }
 
 export function keys() {
-    return data().keys();
+    return getAll().keys();
 }
 
