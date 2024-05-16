@@ -19,7 +19,7 @@ export function get(key, defaultValue = null) {
 }
 
 export function set(key, value) {
-    let data = data();
+    let data = getAll();
     data[key] = value
     const dataStr = JSON.stringify(data)
     localStorage.setItem(STORAGE_KEY, encryptString(dataStr))

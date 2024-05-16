@@ -30,6 +30,11 @@ axiosInstance.interceptors.request.use(
             config.headers['Authorization'] = token;
         }
 
+        let globalHeaders = getGlobalHeaders();
+        for (let key in globalHeaders) {
+            config.headers[key] = globalHeaders[key];
+        }
+
         return config;
     }
 );
