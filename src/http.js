@@ -164,19 +164,32 @@ export function getGlobalHeaders() {
     return result;
 }
 
+/**
+ *  防止双斜杠出现
+ */
+function makeUrl(url) {
+    if(url.startsWith("//")){
+        return url.substring(1)
+    }
+    return url;
+}
+
 export function get(url, params = null) {
+    url = makeUrl(url)
     return axiosInstance.get(url, {params})
 }
 
 export function post(url, data, params = null) {
-    return axiosInstance.post(url, data, {
-        params
-    })
+    url = makeUrl(url)
+    return axiosInstance.post(url, data, {        params    })
 }
 
 export function postForm(url, data) {
+    url = makeUrl(url)
     return axiosInstance.postForm(url, data)
 }
+
+
 
 /**
  * 分页请求, 正对前端为antd的ProTable
