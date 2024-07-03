@@ -1,15 +1,14 @@
 /**
- * 获取url的参数
- * @param urlStr
- * @returns {*|{}|{}}
+ * 获取url的参数, 如果不传参数，则使用当前路径
+ * @param url 字符串
  */
-export function params(urlStr) {
-    if (!urlStr) {
-        return {}
+export function params(url= null) {
+    if (!url) {
+        url = location.href
     }
 
-    const url = new URL(urlStr);
-    const params = new URLSearchParams(url.search);
+    const urlObj = new URL(url);
+    const params = new URLSearchParams(urlObj.search);
 
     const result = {}
     for (const [key, value] of params.entries()) {
