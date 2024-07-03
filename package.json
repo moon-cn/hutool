@@ -1,6 +1,6 @@
 {
   "name": "@moon-cn/hutool",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "js tools , such as lodash, tree, axios ",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "build": "webpack && npx tsc",
-    "publish:beta": "webpack && npx tsc &&  npm --registry https://registry.npmjs.org publish  --access=public"
+    "publish": "webpack && npx tsc &&  npm publish --registry https://registry.npmjs.org"
   },
   "author": "moon-cn",
   "license": "ISC",
