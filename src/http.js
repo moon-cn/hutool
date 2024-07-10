@@ -42,7 +42,10 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(res => {
     const {data, headers} = res;
 
-    data._headers = headers
+    if(data && (typeof data) === 'object'){
+        data._headers = headers
+    }
+
     return data;
 })
 

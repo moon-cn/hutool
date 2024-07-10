@@ -1,6 +1,6 @@
 {
   "name": "@moon-cn/hutool",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "js tools , such as lodash, tree, axios ",
   "repository": {
     "type": "git",
