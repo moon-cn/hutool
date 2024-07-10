@@ -12,7 +12,7 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "build": "webpack && npx tsc",
-    "publish": "webpack && npx tsc &&  npm publish --registry https://registry.npmjs.org"
+    "build-publish": "webpack && npx tsc &&  npm publish --registry https://registry.npmjs.org"
   },
   "author": "moon-cn",
   "license": "ISC",
