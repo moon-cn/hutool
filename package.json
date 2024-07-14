@@ -1,18 +1,20 @@
 {
   "name": "@moon-cn/hutool",
-  "version": "1.0.2",
-  "description": "js tools , such as lodash, tree, axios ",
+  "version": "1.0.3",
+  "description": "tools",
   "repository": {
     "type": "git",
     "url": "https://github.com/moon-cn/hutool.git"
   },
-  "main": "dist/index.js",
+  "main": "dist/index.es.js",
+  "type": "module",
+  "unpkg": "dist/index.umd.js",
   "scripts": {
     "prepare": "npm config set registry https://registry.npmjs.org/",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "build": "webpack && npx tsc",
-    "build-publish": "webpack && npx tsc &&  npm publish --registry https://registry.npmjs.org"
+    "build": "rollup -c",
+    "build-publish": "npm run build &&  npm publish --registry https://registry.npmjs.org"
   },
   "author": "moon-cn",
   "license": "ISC",
@@ -24,6 +26,10 @@
     "typescript": "^5.4.5",
     "vitest": "^1.6.0",
     "webpack": "^5.91.0",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "rollup": "^4.18.1"
+  },
+  "dependencies": {
+
   }
 }
